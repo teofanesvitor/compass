@@ -1,0 +1,28 @@
+<!doctype html><html lang="pt-BR"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"><title>Trajetória de Poço</title>
+<link rel="stylesheet" href="css/style.css"></head><body>
+<h1>Construção de Trajetória de Poço</h1>
+<div class="tabs" id="tabs"></div>
+
+<div id="wrap"><div id="L"><div id="p_start" class="card">
+<h2>Ponto inicial (tie-in)</h2>
+<div class="row" id="tie"></div>
+<div class="row" style="margin-top:8px"><label>Azimute da VS (°, vazio = auto)<input id="vsaz" placeholder="auto"></label><button class="btn" onclick="resetTie()">Definir início / limpar tabela</button></div>
+<h2 style="margin-top:14px">Alvos</h2><div id="tg"></div><button class="btn s" onclick="addT()">+ Alvo</button>
+</div>
+
+<div id="p_m" class="card hid"><h2 id="mt"></h2><div class="row"><label id="modl">Modo<select id="mode" onchange="drawForm()"></select></label><div class="row" id="flds"></div><label id="tgl">Alvo<select id="f_tgt" onchange="autoAlign()"></select></label><label id="tgl2" class="hid">Alvo 2 (opcional)<select id="f_tgt2" onchange="autoAlign()"></select></label><button class="btn" onclick="run()">Calcular e adicionar</button></div><div class="msg" id="alh"></div><div id="pb" class="hid" style="margin-top:10px"></div><div class="msg" id="msg"></div></div>
+
+<div id="p_tab" class="card"><div class="row" style="justify-content:space-between"><h2>Tabela de trajetória</h2><span><button class="btn s" onclick="S.length>1&&S.pop();LASTOPT=null;render()">Remover último</button> <button class="btn s" onclick="copyCsv()">Copiar CSV</button></span></div><div class="tw" id="tbl"></div></div>
+
+
+
+<div id="p_ds" class="hid card"><h2>Discretização automática</h2><div class="row"><label>Passo (m)<input id="step" type="number" value="10" min="0.1"></label><button class="btn" onclick="doDisc()">Discretizar trajetória atual</button></div><div class="msg" id="dmsg"></div><div class="tw" id="dtbl" style="margin-top:8px"></div></div></div><div id="Rt"><div class="msg" id="chinfo" style="margin:0 0 8px"></div><div class="grid" id="cg"></div></div></div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
+<script src="js/core.js"></script>
+<script src="js/methods.js"></script>
+<script src="js/ui.js"></script>
+<script src="js/discretize.js"></script>
+<script src="js/charts.js"></script>
+<script src="js/main.js"></script>
+</body></html>
