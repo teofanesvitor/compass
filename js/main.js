@@ -1,0 +1,1 @@
+drawT();resetTie();tab("start");
