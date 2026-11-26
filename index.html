@@ -16,11 +16,34 @@
 
 
 
-<div id="p_ds" class="hid card"><h2>Discretização automática</h2><div class="row"><label>Passo (m)<input id="step" type="number" value="10" min="0.1"></label><button class="btn" onclick="doDisc()">Discretizar trajetória atual</button></div><div class="msg" id="dmsg"></div><div class="tw" id="dtbl" style="margin-top:8px"></div></div></div><div id="Rt"><div class="msg" id="chinfo" style="margin:0 0 8px"></div><div class="grid" id="cg"></div></div></div>
+<div id="p_int" class="hid card">
+<h2>Interception Analysis / 3D Alignment</h2>
+<p class="msg">Importe o survey do poço-alvo em CSV com cabeçalho MD, Inc e Azi. As coordenadas iniciais devem estar no mesmo referencial do tie-in atual.</p>
+<div class="row">
+<label>Survey do poço-alvo (CSV)<input id="target_file" type="file" accept=".csv,.txt" onchange="loadTargetWellFile(this)"></label>
+<label>TVD inicial do poço-alvo (m)<input id="target_tvd0" type="number" step="any" value="0"></label>
+<label>N/S inicial (m)<input id="target_ns0" type="number" step="any" value="0"></label>
+<label>E/W inicial (m)<input id="target_ew0" type="number" step="any" value="0"></label>
+<label>Intervalo entre candidatos (m)<input id="candidate_step" type="number" min="1" value="100"></label>
+<button class="btn" onclick="findInterceptionCandidates()">Atualizar candidatos</button>
+</div>
+<div class="msg" id="target_status">Nenhum survey carregado.</div>
+<div id="candidate_results" class="tw"></div>
+<h2 style="margin-top:14px">3D Alignment</h2>
+<div class="row">
+<label>DLS 1 (°/30 m)<input id="align_dls1" type="number" min="0.01" step="any" value="3"></label>
+<label>DLS 2 (°/30 m)<input id="align_dls2" type="number" min="0.01" step="any" value="3"></label>
+<button class="btn" onclick="build3DAlignment()">Construir alinhamento</button>
+<button class="btn s" onclick="runInterceptionAnalysis()">Analisar trajetória atual</button>
+</div>
+<div class="msg" id="int_msg"></div>
+<div id="interception_result"></div>
+</div>
+\n<div id="p_ds" class="hid card"><h2>Discretização automática</h2><div class="row"><label>Passo (m)<input id="step" type="number" value="10" min="0.1"></label><button class="btn" onclick="doDisc()">Discretizar trajetória atual</button></div><div class="msg" id="dmsg"></div><div class="tw" id="dtbl" style="margin-top:8px"></div></div></div><div id="Rt"><div class="msg" id="chinfo" style="margin:0 0 8px"></div><div class="grid" id="cg"></div></div></div>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
 <script src="js/core.js"></script>
-<script src="js/methods.js"></script>
+<script src="js/methods.js"></script>\n<script src="js/interception.js"></script>
 <script src="js/ui.js"></script>
 <script src="js/discretize.js"></script>
 <script src="js/charts.js"></script>
