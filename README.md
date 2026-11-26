@@ -49,3 +49,15 @@ No repositório, vá em **Settings → Pages → Source** e escolha **GitHub Act
 - Nudge Inline varre o DLS em passos de 0.01 (o original usa 0.001).
 - Slant não tem o fallback iterativo do original.
 - Tolerância de "alvo atingido": 0.01 m.
+
+## Interception Analysis e 3D Alignment
+
+A aba **Interceptação** permite importar o survey de um poço-alvo e planejar uma trajetória de aproximação:
+
+1. Importe um CSV com cabeçalho contendo `MD`, `Inc` e `Azi` (separador ponto e vírgula, vírgula ou tabulação).
+2. Informe as coordenadas iniciais do survey-alvo (`TVD`, `N/S`, `E/W`) no mesmo referencial do tie-in do poço em planejamento.
+3. Gere e selecione pontos candidatos ao longo do survey-alvo.
+4. Informe `DLS 1` e `DLS 2` e execute **Construir alinhamento**. O cálculo reutiliza o Curve-Hold-Curve do **Optimum Align** existente; não adiciona otimização independente de MD ou DLS.
+5. A análise calcula a menor distância entre os eixos, MD correspondente em cada poço, separações horizontal/vertical e ângulo entre tangentes.
+
+A análise geométrica usa interpolação de mínima curvatura entre estações e aproximação segmentar com discretização interna de 20 m. Os resultados são uma avaliação geométrica, não substituem análise de incerteza ISCWSA, ranging magnético ou critérios operacionais de interceptação.
